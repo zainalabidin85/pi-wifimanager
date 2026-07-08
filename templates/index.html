@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pi WiFi Setup</title>
+  <style>
+    body { font-family: -apple-system, Roboto, sans-serif; max-width: 420px; margin: 2rem auto; padding: 0 1rem; background:#111; color:#eee; }
+    h1 { font-size: 1.3rem; }
+    ul { list-style: none; padding: 0; }
+    li { padding: .6rem .8rem; margin-bottom: .4rem; background:#222; border-radius: 8px; cursor: pointer; display:flex; justify-content:space-between; }
+    input, button { width:100%; padding:.7rem; margin-top:.6rem; border-radius:8px; border:1px solid #444; background:#1b1b1b; color:#eee; box-sizing:border-box; }
+    button { background:#4caf50; border:none; font-weight:600; cursor:pointer; }
+    .error { color:#ff6b6b; margin-top:.6rem; }
+    .lock { opacity:.6; font-size:.85em; }
+  </style>
+</head>
+<body>
+  <h1>Connect the Pi to WiFi</h1>
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="post" action="/connect" id="wifi-form">
+    <ul>
+      {% for net in networks %}
+      <li onclick="selectNetwork('{{ net.ssid|e }}')">
+        <span>{{ net.ssid }}</span>
+        <span class="lock">{{ net.signal }}%{% if net.secured %} &#128274;{% endif %}</span>
+      </li>
+      {% else %}
+      <li>No networks found. Try reloading the page.</li>
+      {% endfor %}
+    </ul>
+    <input type="text" name="ssid" id="ssid" placeholder="Network name (SSID)" required>
+    <input type="password" name="password" id="password" placeholder="Password (leave blank if open)">
+    <button type="submit">Connect</button>
+  </form>
+  <script>
+    function selectNetwork(ssid) {
+      document.getElementById('ssid').value = ssid;
+      document.getElementById('password').focus();
+    }
+  </script>
+</body>
+</html>
