@@ -9,7 +9,7 @@ from flask import Flask, redirect, render_template, request
 
 WIFI_IFACE = "wlan0"
 AP_SSID = "Pi5-Setup"
-AP_PASSWORD = "12345678"  # WPA2 requires 8+ chars; set to "" for an open AP
+AP_PASSWORD = ""  # WPA2 requires 8+ chars; set to "" for an open AP
 AP_CON_NAME = "PiWifiManagerAP"
 BOOT_WAIT = 15        # seconds to wait at boot for an already-known network
 CONNECT_TIMEOUT = 20  # seconds to wait for a new connection to come up
