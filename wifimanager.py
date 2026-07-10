@@ -44,6 +44,12 @@ def start_ap(wifi_iface=WIFI_IFACE):
     if AP_PASSWORD:
         cmd += ["password", AP_PASSWORD]
     run(cmd)
+    if not AP_PASSWORD:
+        # `nmcli device wifi hotspot` always secures the AP, generating a random
+        # WPA2 password if none is given -- explicitly strip security for a true
+        # open network.
+        run(["nmcli", "connection", "modify", AP_CON_NAME, "remove", "802-11-wireless-security"])
+        run(["nmcli", "connection", "up", AP_CON_NAME])
 
 
 def scan_networks(wifi_iface=WIFI_IFACE):
