@@ -64,7 +64,7 @@ wifimanager`):
 |---|---|---|
 | `WIFI_IFACE` | `wlan0` | WiFi interface to manage |
 | `AP_SSID` | `Pi5-Setup` | Name of the setup access point |
-| `AP_PASSWORD` | `12345678` | Access point password (`""` for an open AP). WPA2 requires 8+ characters. **Change this before deploying** — see [Security](#security) below. |
+| `AP_PASSWORD` | `` | No Access point password (`""` for an open AP). |
 | `AP_CON_NAME` | `PiWifiManagerAP` | NetworkManager connection name used for the temporary AP |
 | `BOOT_WAIT` | `15` | Seconds to wait at boot for an existing connection before starting the AP |
 | `CONNECT_TIMEOUT` | `20` | Seconds to wait for a newly-submitted network to come up |
